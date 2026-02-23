@@ -1,4 +1,4 @@
-.PHONY: build run test test-unit test-integration docker-build docker-up docker-down docker-test clean
+.PHONY: build run test test-unit test-integration docker-build docker-up docker-down docker-test clean test-ui
 
 build:
 	go build -o bin/server ./cmd/main.go
@@ -31,6 +31,9 @@ docker-logs:
 docker-test:
 	docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
 	docker-compose -f docker-compose.test.yml down -v
+
+test-ui:
+	cd test-ui && python3 -m http.server 3000
 
 clean:
 	rm -rf bin/

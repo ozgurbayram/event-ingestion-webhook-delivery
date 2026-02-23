@@ -44,7 +44,7 @@ func main() {
 
 	server := &http.Server{
 		Addr:         ":" + cfg.Server.Port,
-		Handler:      router,
+		Handler:      handlers.CORSMiddleware(router),
 		ReadTimeout:  cfg.Server.ReadTimeout,
 		WriteTimeout: cfg.Server.WriteTimeout,
 	}
